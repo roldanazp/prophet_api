@@ -19,7 +19,7 @@ def handler(job):
 
         return {
             "status": "success",
-            "predictions": predictions
+            "predictions": predictions.tolist()
         }
 
     except Exception as e:
