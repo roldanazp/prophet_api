@@ -1,6 +1,6 @@
 import runpod
 from tabpfn import TabPFNClassifier
-
+MODEL_PATH = "/app/models/tabpfn-v2.5-classifier-v2.5_default.ckpt"
 def handler(job):
     try:
         job_input = job["input"]
@@ -11,7 +11,7 @@ def handler(job):
 
         model = TabPFNClassifier(
             random_state=random_state,
-            model_path="tabpfn-v2.5-classifier-v2.5_default.ckpt"
+            model_path=MODEL_PATH
         )
 
         model.fit(x_context, y_context)
