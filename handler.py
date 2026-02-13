@@ -1,14 +1,5 @@
-import os
-
 import runpod
 from tabpfn import TabPFNClassifier
-
-MODEL_ID = os.environ.get("MODEL_NAME", "microsoft/Phi-3-mini-4k-instruct")
-HF_CACHE_ROOT = "/runpod-volume/huggingface-cache/hub"
-
-# Force offline mode to use only cached models
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
 def handler(job):
     try:
@@ -18,7 +9,11 @@ def handler(job):
         y_context = job_input["y_context"]
         x_target = job_input["x_target"]
 
-        model = TabPFNClassifier(random_state=random_state)
+        model = TabPFNClassifier(
+            random_state=random_state,
+            model_path="tabpfn-v2.5-classifier-v2.5_default.ckpt"
+        )
+
         model.fit(x_context, y_context)
         predictions = model.predict(x_target)
 
