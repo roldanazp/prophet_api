@@ -1,0 +1,12 @@
+.secrets/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Optional: Build directories
+build/
+dist/
+*.egg-info/
