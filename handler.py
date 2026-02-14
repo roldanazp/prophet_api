@@ -15,11 +15,11 @@ def handler(job):
         )
 
         model.fit(x_context, y_context)
-        predictions = model.predict(x_target)
+        pred_proba = model.predict_proba(x_target)
 
         return {
             "status": "success",
-            "predictions": predictions.tolist()
+            "predictions_probabilities": pred_proba.tolist()
         }
 
     except Exception as e:
